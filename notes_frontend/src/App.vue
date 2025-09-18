@@ -1,85 +1,61 @@
 <script setup lang="ts">
-import { RouterLink, RouterView } from 'vue-router'
-import HelloWorld from './components/HelloWorld.vue'
+import TopBar from './components/TopBar.vue'
+import SidebarNotes from './components/SidebarNotes.vue'
+import NoteEditor from './components/NoteEditor.vue'
 </script>
 
 <template>
-  <header>
-    <img alt="Vue logo" class="logo" src="@/assets/logo.svg" width="125" height="125" />
-
-    <div class="wrapper">
-      <HelloWorld msg="You did it!" />
-
-      <nav>
-        <RouterLink to="/">Home</RouterLink>
-        <RouterLink to="/about">About</RouterLink>
-      </nav>
+  <div class="app-root">
+    <TopBar />
+    <div class="layout">
+      <SidebarNotes class="sidebar" />
+      <main class="content">
+        <NoteEditor />
+      </main>
     </div>
-  </header>
-
-  <RouterView />
+  </div>
 </template>
 
 <style scoped>
-header {
-  line-height: 1.5;
-  max-height: 100vh;
+.app-root {
+  min-height: 100vh;
+  background: linear-gradient(180deg, rgba(37,99,235,0.06), rgba(249,250,251,1));
 }
 
-.logo {
-  display: block;
-  margin: 0 auto 2rem;
+.layout {
+  display: grid;
+  grid-template-columns: 300px 1fr;
+  gap: 16px;
+  padding: 16px;
+  max-width: 1400px;
+  margin: 0 auto;
 }
 
-nav {
-  width: 100%;
-  font-size: 12px;
-  text-align: center;
-  margin-top: 2rem;
+.sidebar {
+  min-height: calc(100vh - 96px);
 }
 
-nav a.router-link-exact-active {
-  color: var(--color-text);
+.content {
+  background: #ffffff;
+  border-radius: 14px;
+  box-shadow:
+    0 10px 25px rgba(17, 24, 39, 0.08),
+    0 2px 6px rgba(17, 24, 39, 0.04);
+  overflow: hidden;
+  min-height: calc(100vh - 96px);
+  border: 1px solid rgba(17,24,39,0.06);
 }
 
-nav a.router-link-exact-active:hover {
-  background-color: transparent;
-}
-
-nav a {
-  display: inline-block;
-  padding: 0 1rem;
-  border-left: 1px solid var(--color-border);
-}
-
-nav a:first-of-type {
-  border: 0;
-}
-
-@media (min-width: 1024px) {
-  header {
-    display: flex;
-    place-items: center;
-    padding-right: calc(var(--section-gap) / 2);
+@media (max-width: 920px) {
+  .layout {
+    grid-template-columns: 1fr;
   }
-
-  .logo {
-    margin: 0 2rem 0 0;
+  .sidebar {
+    min-height: auto;
+    order: 2;
   }
-
-  header .wrapper {
-    display: flex;
-    place-items: flex-start;
-    flex-wrap: wrap;
-  }
-
-  nav {
-    text-align: left;
-    margin-left: -1rem;
-    font-size: 1rem;
-
-    padding: 1rem 0;
-    margin-top: 1rem;
+  .content {
+    order: 1;
   }
 }
 </style>

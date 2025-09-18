@@ -1,9 +1,10 @@
 <script setup lang="ts">
-import TheWelcome from '../components/TheWelcome.vue'
+/* Home is not used directly since App holds the layout. This view remains for route completeness. */
 </script>
 
 <template>
-  <main>
-    <TheWelcome />
+  <main style="padding:24px;">
+    <h2>Welcome</h2>
+    <p>The main application layout is already visible. Use the sidebar to manage notes.</p>
   </main>
 </template>
